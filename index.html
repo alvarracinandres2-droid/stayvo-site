@@ -1,10 +1,16 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Stayvo · Small Hotel PMS para Odoo</title>
-<meta name="description" content="Sistema de hotel dentro de Odoo: calendario de recepción, reservas, tarifas, limpieza y conexión con Beds24 (Booking.com, Airbnb, Expedia, Agoda). Odoo 15 a 19, Community y Enterprise. Sistema base gratis.">
+<title>Stayvo · Hotel PMS and Channel Manager for Odoo</title>
+<meta name="description" content="Hotel management inside Odoo: front desk calendar, reservations, seasonal rates, housekeeping and a two-way Beds24 channel manager for Booking.com, Airbnb, Expedia and Agoda. Free base PMS, Odoo 15 to 19.">
+<link rel="canonical" href="https://alvarracinandres2-droid.github.io/stayvo-site/">
+<link rel="alternate" hreflang="es" href="https://alvarracinandres2-droid.github.io/stayvo-site/es/">
+<meta property="og:title" content="Stayvo · Hotel PMS and Channel Manager for Odoo">
+<meta property="og:description" content="Hotel management inside Odoo: front desk calendar, reservations, seasonal rates, housekeeping and a two-way Beds24 channel manager for Booking.com, Airbnb, Expedia and Agoda. Free base PMS, Odoo 15 to 19.">
+<meta property="og:image" content="https://alvarracinandres2-droid.github.io/stayvo-site/img/frontdesk.jpg">
+<meta property="og:type" content="website">
 <link rel="icon" href="img/logo.png">
 <style>
   :root { --teal:#14b8a6; --navy:#0c345c; --ink:#16343d; --muted:#5b707a; --bg:#f4f8f9; --gold:#f7be48; --accent:#ff6b57; }
@@ -48,81 +54,63 @@
     .hero h1 { font-size:34px; }
   }
 </style>
+<style>.article{max-width:820px;margin:0 auto;padding:50px 20px;font-size:17px}.article h1{font-size:36px;line-height:1.2}.article h2{text-align:left;font-size:26px;margin-top:36px}.article li{margin-bottom:8px}.note{background:var(--bg);border-radius:12px;padding:16px 20px}.article .cta{margin-top:10px}</style>
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <nav>
-      <a class="brand" href="#"><img src="img/logo.png" alt="Stayvo">Stayvo</a>
-      <div class="lang"><a href="#funciones">Funciones</a><a href="#beds24">Beds24</a><a href="#precios">Precios</a><a href="#contacto">Contacto</a></div>
-    </nav>
-    <div class="hero">
-      <div>
-        <h1>Tu hotel entero, dentro de Odoo.</h1>
-        <p>Calendario de recepción, reservas, tarifas por temporada, limpieza y conexión con Booking.com, Airbnb, Expedia y Agoda a través de Beds24. Hecho para hoteles pequeños, hostales y posadas.</p>
-        <a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Descargar gratis</a>
-        <a class="cta ghost" href="https://stayvo-demo.72-61-12-204.sslip.io/web/login">Probar la demo (demo / demo)</a>
-        <div class="badges">Sistema base gratis · Odoo 15 a 19 · Community y Enterprise · Español e inglés</div>
-      </div>
-      <video src="img/demo.mp4" autoplay muted loop playsinline poster="img/frontdesk.jpg"></video>
-    </div>
-  </div>
-</header>
-
-<section id="funciones">
-  <div class="wrap">
-    <h2>Lo que tu recepción necesita, sin complicaciones</h2>
-    <p class="sub">Nació en un hotel real que lo usa todos los días. Cada regla viene de un problema que pasó de verdad.</p>
-    <div class="grid">
-      <div class="card"><h3>Nunca dos veces la misma habitación</h3><p>Un candado en la base de datos impide guardar dos reservas que se cruzan, aunque dos personas guarden en el mismo segundo.</p></div>
-      <div class="card"><h3>Calendario de arrastrar y soltar</h3><p>Mueve una reserva a otra habitación o a otras fechas con el mouse. Siempre pregunta antes, y si no se puede, explica por qué.</p></div>
-      <div class="card"><h3>El día de un vistazo</h3><p>Llegadas, salidas, huéspedes en casa, habitaciones libres y ocupación, con un clic para ver cada lista.</p></div>
-      <div class="card"><h3>Tarifas por temporada</h3><p>Una estadía que cruza dos temporadas se cobra noche por noche. Nada de precios escritos a mano por error.</p></div>
-      <div class="card"><h3>Limpieza ordenada</h3><p>Cada salida crea la tarea de limpieza en un tablero: por limpiar, en limpieza, inspección, limpia.</p></div>
-      <div class="card"><h3>Habitaciones fuera de servicio</h3><p>Cierra una habitación por mantenimiento y deja de venderse en el calendario y en todos los canales.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="alt" id="beds24">
-  <div class="wrap split">
-    <img class="shot" src="img/beds24.jpg" alt="Conexión con Beds24">
+<header><div class="wrap"><nav><a class="brand" href="./"><img src="img/logo.png" alt="Stayvo">Stayvo</a><div class="lang"><a href="#features">Features</a><a href="#beds24">Beds24</a><a href="#pricing">Pricing</a><a href="guides/">Guides</a><a href="es/">Español</a></div></nav>
+  <div class="hero">
     <div>
-      <h2 style="text-align:left">Booking.com, Airbnb, Expedia y Agoda, en los dos sentidos</h2>
-      <ul>
-        <li>Las reservas de los canales, sus cambios y cancelaciones entran solas a Odoo (al instante con el webhook).</li>
-        <li>Lo que vendes en recepción, los cierres y las tarifas salen a Beds24 y a todos los canales.</li>
-        <li>Si un canal sobrevende, la reserva entra igual y te avisa: una venta real nunca se pierde.</li>
-        <li>Cola de envíos con reintentos: una caída de internet no hace perder ningún cambio.</li>
-        <li>Se conecta en 5 minutos con un código de Beds24, incluso desde el celular. Todo empieza apagado hasta que tú decides.</li>
-      </ul>
+      <h1>Run your whole hotel inside Odoo.</h1>
+      <p>Front desk calendar, reservations, seasonal rates, housekeeping, and a two-way channel manager for Booking.com, Airbnb, Expedia and Agoda through Beds24. Made for small hotels, hostels, B&amp;Bs and guest houses.</p>
+      <a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Download free</a>
+      <a class="cta ghost" href="https://stayvo-demo.72-61-12-204.sslip.io/web/login">Try the live demo (demo / demo)</a>
+      <div class="badges">Free base PMS · Odoo 15 to 19 · Community &amp; Enterprise · English &amp; Spanish</div>
     </div>
+    <video src="img/demo.mp4" autoplay muted loop playsinline poster="img/frontdesk.jpg"></video>
+  </div></div></header>
+<section id="features"><div class="wrap">
+  <h2>What your front desk needs, without the clutter</h2>
+  <p class="sub">Born in a real hotel that uses it every day. Every rule comes from something that actually went wrong.</p>
+  <div class="grid">
+    <div class="card"><h3>No double bookings. Ever.</h3><p>A database-level lock refuses two overlapping reservations in the same room, even if two people save in the same second.</p></div>
+    <div class="card"><h3>Drag &amp; drop calendar</h3><p>Move a reservation to another room or other dates with the mouse. It always asks first, and explains why when a move is not possible.</p></div>
+    <div class="card"><h3>The day at a glance</h3><p>Arrivals, departures, in-house guests, free rooms and occupancy, one click away from each list.</p></div>
+    <div class="card"><h3>Seasonal rates done right</h3><p>A stay that crosses two seasons is priced night by night. No more prices typed by hand by mistake.</p></div>
+    <div class="card"><h3>Housekeeping on a board</h3><p>Every check-out creates the cleaning task: to clean, cleaning, inspection, clean.</p></div>
+    <div class="card"><h3>Rooms out of order</h3><p>Close a room for maintenance and it stops selling on the calendar and on every channel.</p></div>
   </div>
-</section>
+</div></section>
 
-<section id="precios">
-  <div class="wrap">
-    <h2>Empieza gratis. Paga solo lo que uses.</h2>
-    <p class="sub">El sistema base es gratis. Los complementos se pagan una sola vez en la tienda oficial de Odoo, sin mensualidades, con actualizaciones y 60 días de soporte incluidos. Precios en dólares.</p>
-    <div class="plans">
-      <div class="plan best"><h3>Small Hotel PMS</h3><div class="price">Gratis</div><small>Habitaciones, reservas, tarifas por temporada, cierres y limpieza.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Descargar</a></div>
-      <div class="plan"><h3>Recepción</h3><div class="price">$69</div><small>Calendario de arrastrar y soltar, llegadas, salidas y ocupación.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_frontdesk">Ver</a></div>
-      <div class="plan"><h3>Beds24</h3><div class="price">$129</div><small>Booking.com, Airbnb, Expedia y Agoda en los dos sentidos.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_beds24">Ver</a></div>
-    </div>
-    <p class="sub" style="margin-top:28px">También: motor de reservas en tu web, sincronización iCal, grupos y rooming list, folio y factura, cargo a la habitación desde el punto de venta, cambio de turno y auditoría nocturna, tours y reseñas de Google. <a href="https://apps.odoo.com/apps/browse?search=stayvo">Ver todas las apps</a></p>
+<section class="alt" id="beds24"><div class="wrap split">
+  <img class="shot" src="img/beds24.jpg" alt="Odoo Beds24 channel manager">
+  <div>
+    <h2 style="text-align:left">Booking.com, Airbnb, Expedia and Agoda, both ways</h2>
+    <ul>
+      <li>Channel bookings, changes and cancellations come into Odoo by themselves (instantly with the webhook).</li>
+      <li>What you sell at the front desk, room closures and rates go out to Beds24 and every channel.</li>
+      <li>If a channel overbooks, the booking still comes in and you are warned: a real sale is never lost.</li>
+      <li>A send queue with retries: an internet outage never loses a change.</li>
+      <li>Connects in 5 minutes with a Beds24 invite code. Every switch starts off until you decide.</li>
+    </ul>
   </div>
-</section>
+</div></section>
 
-<section class="alt" id="contacto">
-  <div class="wrap" style="text-align:center">
-    <h2>¿Te ayudamos a instalarlo?</h2>
-    <p class="sub">Instalación, migración desde otro sistema o una función a medida para tu hotel. Respondemos en español e inglés.</p>
-    <p style="font-size:20px"><strong>paracontarbotones@gmail.com</strong></p>
+<section id="pricing"><div class="wrap">
+  <h2>Start free. Pay only for what you use.</h2>
+  <p class="sub">The base PMS is free. Add-ons are a one-time payment on the official Odoo Apps Store, no monthly fees, with updates and 60 days of support included. Prices in USD.</p>
+  <div class="plans">
+    <div class="plan best"><h3>Small Hotel PMS</h3><div class="price">Free</div><small>Rooms, reservations, seasonal rates, closures and housekeeping.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Download</a></div>
+    <div class="plan"><h3>Front Desk</h3><div class="price">$69</div><small>Drag &amp; drop tape chart, arrivals, departures and occupancy.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_frontdesk">View</a></div>
+    <div class="plan"><h3>Beds24 Channel Manager</h3><div class="price">$129</div><small>Booking.com, Airbnb, Expedia and Agoda, both ways.</small><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_beds24">View</a></div>
   </div>
-</section>
+  <p class="sub" style="margin-top:28px">Also: website booking engine, iCal sync, groups and rooming lists, guest folio and invoicing, POS charge to room, shift handover and night audit, tours, Google reviews. <a href="https://apps.odoo.com/apps/browse?search=stayvo">See every app</a></p>
+</div></section>
 
-<footer>
-  <div class="wrap">© Stayvo · Small Hotel PMS para Odoo · Odoo es una marca de Odoo S.A.; Stayvo no está afiliado a Odoo S.A. ni a Beds24.</div>
-</footer>
+<section class="alt" id="contact"><div class="wrap" style="text-align:center">
+  <h2>Need help installing it?</h2>
+  <p class="sub">Installation, migration from another system, or a custom feature for your hotel. We answer in English and Spanish.</p>
+  <p style="font-size:20px"><strong>paracontarbotones@gmail.com</strong></p>
+</div></section>
+<footer><div class="wrap">© Stayvo · Hotel PMS for Odoo · <a href="guides/">Guides</a> · support: paracontarbotones@gmail.com<br>Odoo is a trademark of Odoo S.A.; Booking.com, Airbnb, Expedia, Agoda and Beds24 are trademarks of their owners. Stayvo is not affiliated with them.</div></footer>
 </body>
 </html>

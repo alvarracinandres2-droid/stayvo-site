@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alvarracinandres2-droid.github.io/stayvo-site/sitemap.xml
