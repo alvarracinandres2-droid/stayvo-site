@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One invoice for room, services and restaurant in Odoo (hotel folio)</title>
+<meta name="description" content="How to bill a hotel guest once at check-out in Odoo: room nights, extras and restaurant/POS tickets on one folio and one native invoice, without double invoicing. Odoo 15 to 20, Community and Enterprise.">
+<link rel="canonical" href="https://alvarracinandres2-droid.github.io/stayvo-site/guides/odoo-hotel-one-invoice-room-restaurant.html">
+<meta property="og:title" content="One invoice for room, services and restaurant in Odoo (hotel folio)">
+<meta property="og:description" content="How to bill a hotel guest once at check-out in Odoo: room nights, extras and restaurant/POS tickets on one folio and one native invoice, without double invoicing. Odoo 15 to 20, Community and Enterprise.">
+<meta property="og:image" content="https://alvarracinandres2-droid.github.io/stayvo-site/img/frontdesk.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="../img/logo.png">
+<style>
+  :root { --teal:#14b8a6; --navy:#0c345c; --ink:#16343d; --muted:#5b707a; --bg:#f4f8f9; --gold:#f7be48; --accent:#ff6b57; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color:var(--ink); background:#fff; line-height:1.55; }
+  a { color:var(--navy); }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+  header { background:linear-gradient(135deg, var(--teal), var(--navy)); color:#fff; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:16px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:22px; color:#fff; text-decoration:none; }
+  .brand img { width:44px; height:44px; border-radius:10px; }
+  .lang a { color:#d9f3f0; margin-left:12px; font-size:14px; }
+  .hero { display:grid; grid-template-columns: 1.05fr 1fr; gap:40px; align-items:center; padding:40px 0 70px; }
+  .hero h1 { font-size:44px; line-height:1.12; margin:0 0 16px; }
+  .hero p { font-size:19px; color:#e3f6f4; margin:0 0 28px; }
+  .cta { display:inline-block; background:var(--gold); color:#2c2408; font-weight:700; padding:14px 26px; border-radius:10px; text-decoration:none; margin:0 10px 10px 0; }
+  .cta.ghost { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.6); }
+  .hero video, .shot { width:100%; border-radius:12px; box-shadow:0 20px 50px rgba(0,20,40,.35); display:block; }
+  .badges { margin-top:18px; font-size:14px; color:#cdeee9; }
+  section { padding:70px 0; }
+  h2 { font-size:32px; margin:0 0 10px; text-align:center; }
+  .sub { text-align:center; color:var(--muted); max-width:720px; margin:0 auto 40px; font-size:18px; }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; }
+  .card { background:var(--bg); border-radius:14px; padding:24px; }
+  .card h3 { margin:0 0 8px; color:var(--navy); font-size:19px; }
+  .card p { margin:0; color:var(--muted); }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .split ul { padding-left:20px; color:var(--muted); }
+  .split li { margin-bottom:8px; }
+  .alt { background:var(--bg); }
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .plan { border:2px solid #dbe7ea; border-radius:16px; padding:28px; text-align:center; background:#fff; }
+  .plan.best { border-color:var(--teal); box-shadow:0 12px 30px rgba(20,184,166,.18); }
+  .plan .price { font-size:40px; font-weight:800; color:var(--navy); margin:10px 0; }
+  .plan small { color:var(--muted); display:block; min-height:44px; }
+  .plan .cta { margin-top:16px; }
+  footer { background:var(--ink); color:#b9cbd1; padding:40px 0; font-size:15px; }
+  footer a { color:#fff; }
+  @media (max-width: 860px) {
+    .hero, .split, .grid, .plans { grid-template-columns:1fr; }
+    .hero h1 { font-size:34px; }
+  }
+</style>
+<style>.article{max-width:820px;margin:0 auto;padding:50px 20px;font-size:17px}.article h1{font-size:36px;line-height:1.2}.article h2{text-align:left;font-size:26px;margin-top:36px}.article li{margin-bottom:8px}.note{background:var(--bg);border-radius:12px;padding:16px 20px}.article .cta{margin-top:10px}</style>
+</head>
+<body>
+<header><div class="wrap"><nav><a class="brand" href="../"><img src="../img/logo.png" alt="Stayvo">Stayvo</a><div class="lang"><a href="../#features">Features</a><a href="../#beds24">Beds24</a><a href="../#pricing">Pricing</a><a href="../guides/">Guides</a><a href="../es/">Español</a></div></nav></div></header><main class="article"><h1>One invoice for room, services and restaurant in Odoo</h1>
+<p>The most common question from hotels that move to Odoo: <em>the guest ate at the restaurant, used the laundry and
+stayed three nights &ndash; how do I give them one invoice at check-out?</em> Odoo has all the pieces (Point of Sale,
+Sales, Invoicing), but nothing that ties them to a room. This is the pattern that works.</p>
+<h2>The rule: everything goes to the folio, nothing is invoiced on its own</h2>
+<ul>
+<li>Each stay has a <strong>folio</strong>: the list of everything the guest consumed.</li>
+<li>Room nights, extras (laundry, transfers, minibar) and restaurant tickets are <strong>lines on the folio</strong>.</li>
+<li>At check-out you create <strong>one customer invoice</strong> from the folio, with Odoo&rsquo;s own invoicing (taxes,
+fiscal positions and e-invoicing keep working).</li>
+</ul>
+<h2>Restaurant and bar: charge to the room from the POS</h2>
+<p>In the Point of Sale, the cashier pays the order with Odoo&rsquo;s native <strong>Customer Account</strong> (pay later)
+method for the guest staying in the room. The ticket is then copied to that guest&rsquo;s folio and marked so that
+<strong>neither the POS nor the folio invoices it twice</strong>. Two checks matter in practice: refuse the charge if the
+person is not checked in, and refuse it if the guest has more than one room (ask which one).</p>
+<h2>Partial invoices and changed stays</h2>
+<ul>
+<li>Invoice only the lines that have no invoice yet: you can bill the deposit now and the extras later.</li>
+<li>If the stay gets longer, invoice only the new nights. If it gets shorter after invoicing, issue a credit note
+instead of editing a posted invoice.</li>
+<li>The folio total with taxes should always equal the sum of its invoices: that is your control.</li>
+</ul>
+<h2>Ready-made on Odoo 15 to 20</h2>
+<p>This is exactly what <a href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_folio">Hotel Folio</a> and
+<a href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel_pos">Room Charge from POS</a> do, on top of the free
+<a href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Small Hotel PMS</a>. Community and Enterprise.</p>
+<p class="note">Questions or a quote for your hotel: paracontarbotones@gmail.com</p>
+<p><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_hotel">Download the free PMS</a> <a class="cta" href="https://stayvo-demo.72-61-12-204.sslip.io/web/login">Try the live demo (demo / demo)</a></p>
+</main><footer><div class="wrap">© Stayvo · Hotel PMS for Odoo · <a href="../guides/">Guides</a> · support: paracontarbotones@gmail.com<br>Odoo is a trademark of Odoo S.A.; Booking.com, Airbnb, Expedia, Agoda and Beds24 are trademarks of their owners. Stayvo is not affiliated with them.</div></footer>
+</body>
+</html>

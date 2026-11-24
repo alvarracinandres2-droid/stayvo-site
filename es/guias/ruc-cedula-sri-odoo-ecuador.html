@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Consultar RUC y cédula del SRI desde Odoo (Ecuador)</title>
+<meta name="description" content="Odoo valida el formato del RUC pero no consulta al SRI. Cómo llenar el contacto con los datos reales del SRI y detectar contribuyentes no activos antes de facturar. Odoo 15 a 20, Community y Enterprise.">
+<link rel="canonical" href="https://alvarracinandres2-droid.github.io/stayvo-site/es/guias/ruc-cedula-sri-odoo-ecuador.html">
+<meta property="og:title" content="Consultar RUC y cédula del SRI desde Odoo (Ecuador)">
+<meta property="og:description" content="Odoo valida el formato del RUC pero no consulta al SRI. Cómo llenar el contacto con los datos reales del SRI y detectar contribuyentes no activos antes de facturar. Odoo 15 a 20, Community y Enterprise.">
+<meta property="og:image" content="https://alvarracinandres2-droid.github.io/stayvo-site/img/frontdesk.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="../../img/logo.png">
+<style>
+  :root { --teal:#14b8a6; --navy:#0c345c; --ink:#16343d; --muted:#5b707a; --bg:#f4f8f9; --gold:#f7be48; --accent:#ff6b57; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif; color:var(--ink); background:#fff; line-height:1.55; }
+  a { color:var(--navy); }
+  .wrap { max-width:1120px; margin:0 auto; padding:0 20px; }
+  header { background:linear-gradient(135deg, var(--teal), var(--navy)); color:#fff; }
+  nav { display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:16px; flex-wrap:wrap; }
+  .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:22px; color:#fff; text-decoration:none; }
+  .brand img { width:44px; height:44px; border-radius:10px; }
+  .lang a { color:#d9f3f0; margin-left:12px; font-size:14px; }
+  .hero { display:grid; grid-template-columns: 1.05fr 1fr; gap:40px; align-items:center; padding:40px 0 70px; }
+  .hero h1 { font-size:44px; line-height:1.12; margin:0 0 16px; }
+  .hero p { font-size:19px; color:#e3f6f4; margin:0 0 28px; }
+  .cta { display:inline-block; background:var(--gold); color:#2c2408; font-weight:700; padding:14px 26px; border-radius:10px; text-decoration:none; margin:0 10px 10px 0; }
+  .cta.ghost { background:transparent; color:#fff; border:2px solid rgba(255,255,255,.6); }
+  .hero video, .shot { width:100%; border-radius:12px; box-shadow:0 20px 50px rgba(0,20,40,.35); display:block; }
+  .badges { margin-top:18px; font-size:14px; color:#cdeee9; }
+  section { padding:70px 0; }
+  h2 { font-size:32px; margin:0 0 10px; text-align:center; }
+  .sub { text-align:center; color:var(--muted); max-width:720px; margin:0 auto 40px; font-size:18px; }
+  .grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:22px; }
+  .card { background:var(--bg); border-radius:14px; padding:24px; }
+  .card h3 { margin:0 0 8px; color:var(--navy); font-size:19px; }
+  .card p { margin:0; color:var(--muted); }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center; }
+  .split ul { padding-left:20px; color:var(--muted); }
+  .split li { margin-bottom:8px; }
+  .alt { background:var(--bg); }
+  .plans { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .plan { border:2px solid #dbe7ea; border-radius:16px; padding:28px; text-align:center; background:#fff; }
+  .plan.best { border-color:var(--teal); box-shadow:0 12px 30px rgba(20,184,166,.18); }
+  .plan .price { font-size:40px; font-weight:800; color:var(--navy); margin:10px 0; }
+  .plan small { color:var(--muted); display:block; min-height:44px; }
+  .plan .cta { margin-top:16px; }
+  footer { background:var(--ink); color:#b9cbd1; padding:40px 0; font-size:15px; }
+  footer a { color:#fff; }
+  @media (max-width: 860px) {
+    .hero, .split, .grid, .plans { grid-template-columns:1fr; }
+    .hero h1 { font-size:34px; }
+  }
+</style>
+<style>.article{max-width:820px;margin:0 auto;padding:50px 20px;font-size:17px}.article h1{font-size:36px;line-height:1.2}.article h2{text-align:left;font-size:26px;margin-top:36px}.article li{margin-bottom:8px}.note{background:var(--bg);border-radius:12px;padding:16px 20px}.article .cta{margin-top:10px}</style>
+</head>
+<body>
+<header><div class="wrap"><nav><a class="brand" href="../../"><img src="../../img/logo.png" alt="Stayvo">Stayvo</a><div class="lang"><a href="../../es/">Inicio</a><a href="../../es/guias/">Guías</a><a href="../../">English</a></div></nav></div></header><main class="article"><h1>Consultar RUC y cédula del SRI desde Odoo</h1>
+<p>Con la localización de Ecuador (l10n_ec), Odoo revisa que el RUC o la cédula tengan el largo y el dígito verificador
+correctos. Es útil, pero <strong>no consulta al SRI</strong>: un RUC bien escrito puede estar suspendido o cerrado, y la
+factura electrónica igual sale con ese contacto.</p>
+<h2>Qué conviene tener en cada contacto</h2>
+<ul>
+<li>Tipo de identificación (RUC, cédula o pasaporte) y el número.</li>
+<li>Tipo de contribuyente del SRI.</li>
+<li>Estado del contribuyente: activo, suspendido o pasivo.</li>
+<li>Régimen (general o RIMPE), si está obligado a llevar contabilidad, si es agente de retención o contribuyente
+especial: de eso dependen las retenciones.</li>
+</ul>
+<h2>Cómo hacerlo sin copiar a mano</h2>
+<p>La forma manual es abrir la consulta pública del SRI, buscar el RUC y copiar los datos al contacto. Funciona, pero
+nadie lo repite cada mes, y los contribuyentes cambian de estado.</p>
+<p>Con la app <a href="https://apps.odoo.com/apps/modules/19.0/stayvo_sri_ruc">Stayvo SRI RUC</a> (Odoo 15 a 20):</p>
+<ul>
+<li>al escribir el RUC o la cédula, el contacto se llena solo con el nombre y los datos del SRI;</li>
+<li>botón <em>Consultar SRI</em> y acción en la lista para revisar varios contactos a la vez;</li>
+<li>aviso si el contribuyente no está activo, y filtro para encontrarlos;</li>
+<li>revisión semanal automática que deja una tarea cuando algo cambió;</li>
+<li>validación de la cédula con el dígito verificador.</li>
+</ul>
+<p class="note">Preguntas o implementación: paracontarbotones@gmail.com</p>
+<p><a class="cta" href="https://apps.odoo.com/apps/modules/19.0/stayvo_sri_ruc">Ver la app en la tienda de Odoo</a></p>
+</main><footer><div class="wrap">© Stayvo · Hotel PMS for Odoo · <a href="../../guides/">Guides</a> · support: paracontarbotones@gmail.com<br>Odoo is a trademark of Odoo S.A.; Booking.com, Airbnb, Expedia, Agoda and Beds24 are trademarks of their owners. Stayvo is not affiliated with them.</div></footer>
+</body>
+</html>
